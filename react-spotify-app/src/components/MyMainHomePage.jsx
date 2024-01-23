@@ -7,6 +7,7 @@ export default function MyMainHomePage() {
   const [pop, setPop] = useState([])
   const [hip, setHop] = useState([])
 
+
   let headers = new Headers({
     'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
     'X-RapidAPI-Key': '9d408f0366mshab3b0fd8e5ecdf7p1b09f2jsne682a1797fa0',
@@ -22,7 +23,7 @@ export default function MyMainHomePage() {
       .then(response => response.json())
       .then(json => { 
         setSongs(json.data)
-        console.log(songs)
+        // console.log(songs)
         })
       .catch(error => console.error('error'))
   }
@@ -37,7 +38,7 @@ export default function MyMainHomePage() {
       .then(response => response.json())
       .then(json => { 
         setPop(json.data)
-      console.log(pop)
+      // console.log(pop)
         })
       .catch(error => console.error('error'))
   }
@@ -53,12 +54,15 @@ export default function MyMainHomePage() {
       .then(response => response.json())
       .then(json => { 
         setHop(json.data)
-      console.log(hip)
+      // console.log(hip)
         })
       .catch(error => console.error('error'))
   }
 
 
+  // async function getTextInput() {
+  //   await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${query}`)
+  // }
 
   useEffect(() => {
     getSongsRock()

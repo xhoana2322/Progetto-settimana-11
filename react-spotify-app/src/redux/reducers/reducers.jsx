@@ -1,15 +1,11 @@
-const initialState = {
-    songs: [],
-    error: null,
-  };
+
   
-  const rootReducer = (state = initialState, action) => {
+  const rootReducer = (state = [], action) => {
     switch (action.type) {
       case 'SEARCH_SUCCESS':
         return {
           ...state,
-          songs: action.payload,
-          error: null,
+          songs: [...action.payload]
         };
       case 'SEARCH_FAILURE':
         return {
@@ -18,8 +14,11 @@ const initialState = {
           error: 'Error fetching songs',
         };
       default:
-        return state;
-    }
+        break;
+        
+    } 
+    return state;
   };
   
+
   export default rootReducer;

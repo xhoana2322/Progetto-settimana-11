@@ -109,16 +109,19 @@ import { searchSongs } from '../redux/actions/actions';
 import logo from '../assets/logo/Spotify_Logo.png';
 
 export default function MyNavbar() {
+
   const dispatch = useDispatch();
   const [query, setQuery] = useState('');
   // console.log(query)
 
-  useEffect(() => {
-    if (query.length > 2) {
-      dispatch(searchSongs(query));
-    }
-  }, [query, dispatch]);
 
+  // useEffect(() => {
+  //   if (query.length > 2) {
+  //     dispatch(searchSongs(query));
+  //   }
+  // }, [query]);
+
+  
   return (
     <div className="col-2">
       <Navbar
@@ -163,11 +166,17 @@ export default function MyNavbar() {
                     className="mb-2"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
+                    // onKeyPress={(e) => {
+                    //   if (e.key === 'Enter' && query.length > 2) {
+                    //     dispatch(searchSongs(query));
+                    //   }
+                    // }}
                   />
                   <Button
                     variant="outline-secondary"
                     id="button-addon2"
                     className="mb-2"
+                    // onClick={() => dispatch(searchSongs(query))}
                     onClick={() => dispatch(searchSongs(query))}
                   >
                     GO
