@@ -230,3 +230,10 @@ ul {
 .mainPage img {
   width: 200px;
 }
+
+
+/* css in più */
+
+#title-album, #title-artist {
+  font-size: 0.7rem;
+}

@@ -59,7 +59,7 @@ export default function MyMainHomePage() {
   }
 
 
-  
+
   useEffect(() => {
     getSongsRock()
     getSongsPop()
@@ -95,16 +95,22 @@ export default function MyMainHomePage() {
               <Col className="col-10">
                 <div id="rock" className='d-flex justify-content-center flex-column'>
                   <h2>Rock Classics</h2>
-                  <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
+                  <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3 d-flex align-items-center justify-content-center"
                     id="rockSection">
-                      {songs.slice(0, 6).map((data, index) => (
-                        <div key={index} className='text-center d-flex flex-column align-items-center justify-content-center'>
-                          <img 
+                      {songs.slice(0, 4).map((data, index) => (
+                        <div key={index} className='text-center d-flex flex-column align-items-center justify-content-center'
+                        >
+                          <div style={{ width: '13rem' }}>
+                            <img 
                             variant="top" 
-                            src={data.album.cover_medium} />
+                            src={data.album.cover_medium}
+                            className='w-100'
+                             />
+                          </div>
+                          
                           <div className='lh-1' >
-                            <p className='m-1' >Album: {data.album.title}</p>
-                            <p> Artist: {data.artist.name} </p>
+                            <p id='title-album' className='m-1' >Album: {data.album.title}</p>
+                            <p id='title-artist' > Artist: {data.artist.name} </p>
                           </div>
                         </div>
                       ))}
@@ -121,14 +127,14 @@ export default function MyMainHomePage() {
                     className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                     id="popSection"
                     >
-                      {pop.slice(0, 6).map((data, index) => (
+                      {pop.slice(0, 4).map((data, index) => (
                         <div key={index} className='text-center d-flex flex-column align-items-center justify-content-center'>
                           <img 
                             variant="top" 
                             src={data.album.cover_medium} />
                           <div className='lh-1' >
-                            <p className='m-1' >Album: {data.album.title}</p>
-                            <p> Artist: {data.artist.name} </p>
+                            <p id='title-album' className='m-1' >Album: {data.album.title}</p>
+                            <p id='title-artist'> Artist: {data.artist.name} </p>
                           </div>
                         </div>
                       ))}
@@ -144,14 +150,14 @@ export default function MyMainHomePage() {
                     className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                     id="hipHopSection"
                     >
-                      {hip.slice(0, 6).map((data, index) => (
+                      {hip.slice(0, 4).map((data, index) => (
                         <div key={index} className='text-center d-flex flex-column align-items-center justify-content-center'>
                           <img 
                             variant="top" 
                             src={data.album.cover_medium} />
                           <div className='lh-1' >
-                            <p className='m-1' >Album: {data.album.title}</p>
-                            <p> Artist: {data.artist.name} </p>
+                            <p id='title-album' className='m-1' >Album: {data.album.title}</p>
+                            <p id='title-artist'> Artist: {data.artist.name} </p>
                           </div>
                         </div>
                       ))}
