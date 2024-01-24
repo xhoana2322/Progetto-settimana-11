@@ -1,7 +1,11 @@
 import React from 'react'
 import { Button, Col, Row } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
 
 export default function MyMainArtist() {
+
+  const { id } = useParams()
+
   return (
     <>
         <div className="col-12 col-md-9 offset-md-3 mainPage">

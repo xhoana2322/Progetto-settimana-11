@@ -1,7 +1,11 @@
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
 
 export default function MyMainAlbum() {
+
+  const { id } = useParams()
+
   return (
     <>
         <Col className="col-12 col-md-9 offset-md-3 mainPage">

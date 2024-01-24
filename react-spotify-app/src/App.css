@@ -236,4 +236,18 @@ ul {
 
 #title-album, #title-artist {
   font-size: 0.7rem;
+  font-weight: 700;
+  text-decoration: none !important;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#title-album:hover, #title-artist:hover {
+  color: grey;
+}
+
+#rockSection img, #popSection img, #hipHopSection img {
+  width: 160px !important;
 }

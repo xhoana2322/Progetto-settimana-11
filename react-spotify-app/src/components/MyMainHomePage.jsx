@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Col, Row } from 'react-bootstrap'
+import CardSong from './CardSong'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function MyMainHomePage() {
 
   const [songs, setSongs] = useState([])
   const [pop, setPop] = useState([])
   const [hip, setHop] = useState([])
+  let { state } = useLocation();
+
 
 
   let headers = new Headers({
@@ -90,6 +94,7 @@ export default function MyMainHomePage() {
                       <div
                       className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                       >
+                        {/* <CardSong songs={songs} /> */}
                       </div>
                   </div>
                 </Col>
@@ -101,113 +106,37 @@ export default function MyMainHomePage() {
                   <h2>Rock Classics</h2>
                   <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3 d-flex align-items-center justify-content-center"
                     id="rockSection">
-                      {songs.slice(0, 4).map((data, index) => (
-                        <div key={index} className='text-center d-flex flex-column align-items-center justify-content-center'
-                        >
-                          <div style={{ width: '13rem' }}>
-                            <img 
-                            variant="top" 
-                            src={data.album.cover_medium}
-                            className='w-100'
-                             />
-                          </div>
-                          
-                          <div className='lh-1' >
-                            <p id='title-album' className='m-1' >Album: {data.album.title}</p>
-                            <p id='title-artist' > Artist: {data.artist.name} </p>
-                          </div>
-                        </div>
-                      ))}
+                      <CardSong songs={songs} />
                     </div>
                   </div>
                 </Col>
-            </Row>
+              </Row>
             
-            <Row>
+              <Row>
                 <Col className="col-10">
                 <div id="pop">
                     <h2>Pop Culture</h2>
                     <div
                     className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
-                    id="popSection"
-                    >
-                      {pop.slice(0, 4).map((data, index) => (
-                        <div key={index} className='text-center d-flex flex-column align-items-center justify-content-center'>
-                          <img 
-                            variant="top" 
-                            src={data.album.cover_medium} />
-                          <div className='lh-1' >
-                            <p id='title-album' className='m-1' >Album: {data.album.title}</p>
-                            <p id='title-artist'> Artist: {data.artist.name} </p>
-                          </div>
-                        </div>
-                      ))}
+                    id="popSection">
+                      <CardSong pop={pop} />
                     </div>
                 </div>
                 </Col>
-            </Row>
-            <Row>
+              </Row>
+              <Row>
                 <Col className="col-10">
                 <div id="hiphop">
                     <h2>#HipHop</h2>
                     <div
                     className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
-                    id="hipHopSection"
-                    >
-                      {hip.slice(0, 4).map((data, index) => (
-                        <div key={index} className='text-center d-flex flex-column align-items-center justify-content-center'>
-                          <img 
-                            variant="top" 
-                            src={data.album.cover_medium} />
-                          <div className='lh-1' >
-                            <p id='title-album' className='m-1' >Album: {data.album.title}</p>
-                            <p id='title-artist'> Artist: {data.artist.name} </p>
-                          </div>
-                        </div>
-                      ))}
+                    id="hipHopSection">
+                      <CardSong hip={hip} />
                     </div>
                 </div>
                 </Col>
-            </Row>
-        </div>
+              </Row>
+          </div>
     </>
   )
 }
-
-
-// import React, { useEffect, useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { searchSongs } from '../redux/actions/actions'; // Assicurati che il percorso sia corretto
-
-// const MyMainHomePage = () => {
-//   const dispatch = useDispatch();
-//   const songs = useSelector((state) => state.songs);
-//   const error = useSelector((state) => state.error);
-//   const [query, setQuery] = useState('');
-
-//   useEffect(() => {
-//     if (query.length > 2) {
-//       dispatch(searchSongs(query));
-//     }
-//   }, [query, dispatch]);
-
-//   return (
-//     <div>
-//       <h2>Risultati della ricerca</h2>
-//       {error && <p>Errore nella ricerca: {error}</p>}
-//       <ul>
-//         {songs.map((song) => (
-//           <li key={song.id}>{song.title}</li>
-//         ))}
-//       </ul>
-//       <input
-//         type="text"
-//         placeholder="Cerca canzoni..."
-//         value={query}
-//         onChange={(e) => setQuery(e.target.value)}
-//       />
-//     </div>
-//   );
-// };
-
-// export default MyMainHomePage;

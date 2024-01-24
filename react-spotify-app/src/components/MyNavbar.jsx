@@ -103,16 +103,37 @@
 
 import React, { useEffect, useState } from 'react';
 import { Button, Navbar, ListGroup, Form, InputGroup } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { searchSongs } from '../redux/actions/actions';
 import logo from '../assets/logo/Spotify_Logo.png';
 
 export default function MyNavbar() {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [query, setQuery] = useState('');
+  const [data, setData] = useState([]);
   // console.log(query)
+
+  let headers = new Headers({
+    // sets the headers
+    'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
+    'X-RapidAPI-Key': '9d408f0366mshab3b0fd8e5ecdf7p1b09f2jsne682a1797fa0',
+  })
+
+  async function getQuery() {
+    await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${query}`)
+    // { headers }
+      .then((response) => {
+        setData(response.data)
+        console.log(response.data)
+      })
+      .catch(err => console.error(err))
+  }
+
+  useEffect(() => {
+    getQuery()
+  }, [query])
 
 
   // useEffect(() => {
@@ -173,11 +194,14 @@ export default function MyNavbar() {
                     // }}
                   />
                   <Button
+                    type='submit'
                     variant="outline-secondary"
                     id="button-addon2"
                     className="mb-2"
                     // onClick={() => dispatch(searchSongs(query))}
-                    onClick={() => dispatch(searchSongs(query))}
+                    onClick={() => getQuery()
+                      
+                    }
                   >
                     GO
                   </Button>
