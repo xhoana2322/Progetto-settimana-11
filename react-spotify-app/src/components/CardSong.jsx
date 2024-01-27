@@ -14,6 +14,7 @@ export default function CardSong({songs, pop, hip }) {
           >
             <a>
               <img 
+                className='img-album-card'
                 variant="top" 
                 src={data.album.cover_medium}
                 onClick={() => navigate(`/album/${data.album.id}`)}

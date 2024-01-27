@@ -242,6 +242,7 @@ ul {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  cursor: pointer;
 }
 
 #title-album:hover, #title-artist:hover {
@@ -250,4 +251,19 @@ ul {
 
 #rockSection img, #popSection img, #hipHopSection img {
   width: 160px !important;
+}
+
+.bi-suit-heart, .bi-suit-heart-fill {
+  color: green;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.img-album-card {
+  cursor: pointer !important;
+}
+
+.card-title {
+  width: 150px !important;
 }

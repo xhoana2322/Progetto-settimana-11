@@ -1,24 +1,20 @@
+  const reducers = (state = [], action) => {
 
-  
-  const rootReducer = (state = [], action) => {
-    switch (action.type) {
-      case 'SEARCH_SUCCESS':
+    switch(action.payload) {
+      case 'ADD_SONG_TO_FAVOURITES':
         return {
           ...state,
-          songs: [...action.payload]
-        };
-      case 'SEARCH_FAILURE':
-        return {
-          ...state,
-          songs: [],
-          error: 'Error fetching songs',
-        };
-      default:
-        break;
-        
-    } 
-    return state;
-  };
-  
+          favourites: [...state.favourites, action.payload]
+        }
+        case 'REMOVE_SONG_TO_FAVOURITES':
+          return{
+            ...state,
+            favourites: state.favourites.filter(song => song.album.title !== action.payload.album.title)
+          }
+          default:
+            break
+    }
+    return state
+  }
 
-  export default rootReducer;
+  export default reducers;

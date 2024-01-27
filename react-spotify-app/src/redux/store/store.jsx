@@ -1,16 +1,17 @@
 
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { thunk } from 'redux-thunk';
-import rootReducer from '../reducers/reducers';
+import { createStore, combineReducers } from 'redux';
+// import thunk from 'redux-thunk';
+import reducers from '../reducers/reducers';
 
 const initialState = {
-    songs: []
+    favourites: []
   }
 
   const bigReducer = combineReducers({
-    songs: rootReducer
+    favourites: reducers,
   })
 
-const store = createStore(bigReducer, initialState, applyMiddleware(thunk));
+const store = createStore(bigReducer, initialState);
+
 
 export default store;

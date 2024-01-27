@@ -30,6 +30,7 @@ export default function CardResults({ data }) {
                     <div key={index} className='text-center d-flex flex-column align-items-center justify-content-center'>
                       <Link to={{ pathname: '/album', state: { item }}}>
                         <img 
+                          className='img-album-card'
                           variant="top" 
                           src={item.album.cover_medium}
                         />
