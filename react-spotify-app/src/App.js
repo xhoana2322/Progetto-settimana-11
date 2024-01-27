@@ -28,6 +28,7 @@ import ArtistPage from './pages/ArtistPage';
 import AlbumPage from './pages/AlbumPage';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
+import ResultPage from './pages/ResultPage';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/artist/:id" element={<ArtistPage />} />
             <Route path="/album/:id" element={<AlbumPage />} />
+            <Route path="/results" element={<ResultPage />} />
           </Routes>
         </BrowserRouter>
     </>

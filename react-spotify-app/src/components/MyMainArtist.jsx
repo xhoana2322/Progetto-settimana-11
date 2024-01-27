@@ -2,9 +2,9 @@ import React from 'react'
 import { Button, Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 
-export default function MyMainArtist() {
+export default function MyMainArtist({ currentArray }) {
 
-  const { id } = useParams()
+  console.log(currentArray)
 
   return (
     <>
@@ -46,7 +46,9 @@ export default function MyMainArtist() {
                 <h2 className="text-white font-weight-bold">Tracks</h2>
               </div>
               <div className="pt-5 mb-5">
-                <Row id="apiLoaded"></Row>
+                <Row id="apiLoaded">
+
+                </Row>
               </div>
             </Col>
           </Row>

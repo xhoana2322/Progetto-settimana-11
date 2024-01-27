@@ -102,11 +102,12 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { Button, Navbar, ListGroup, Form, InputGroup } from 'react-bootstrap';
+import { Button, Navbar, ListGroup, Form, InputGroup, Col } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { searchSongs } from '../redux/actions/actions';
 import logo from '../assets/logo/Spotify_Logo.png';
+import MyMainHomePage from './MyMainHomePage'
 
 export default function MyNavbar() {
 
@@ -114,6 +115,7 @@ export default function MyNavbar() {
   const [query, setQuery] = useState('');
   const [data, setData] = useState([]);
   // console.log(query)
+  const navigate = useNavigate()
 
   let headers = new Headers({
     // sets the headers
@@ -122,18 +124,38 @@ export default function MyNavbar() {
   })
 
   async function getQuery() {
-    await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${query}`)
-    // { headers }
-      .then((response) => {
-        setData(response.data)
-        console.log(response.data)
+    await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${query}`, 
+    { headers })
+    .then(response => response.json())
+      .then(json => { 
+        setData(json.data)
+        console.log(json.data)
       })
       .catch(err => console.error(err))
   }
 
-  useEffect(() => {
-    getQuery()
-  }, [query])
+  // async function getQuery() {
+  //   try {
+  //     const response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${query}`, {
+  //       headers: headers,
+  //     });
+  
+  //     if (!response.ok) {
+  //       throw new Error('Network response was not ok');
+  //     }
+  
+  //     const json = await response.json();
+  //     setData(json.data);
+  //     console.log(json.data);
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //   }
+  // }
+  
+
+  // useEffect(() => {
+  //   getQuery()
+  // }, [query])
 
 
   // useEffect(() => {
@@ -199,14 +221,18 @@ export default function MyNavbar() {
                     id="button-addon2"
                     className="mb-2"
                     // onClick={() => dispatch(searchSongs(query))}
-                    onClick={() => getQuery()
-                      
-                    }
+                    onClick={() => { 
+                      getQuery()
+                      navigate('/results', { state: { data} })
+                    }}
                   >
                     GO
                   </Button>
                 </InputGroup>
               </ListGroup>
+              <div>
+                {/* {<MyMainHomePage data={song} />} */}
+              </div>
             </div>
           </div>
         </div>

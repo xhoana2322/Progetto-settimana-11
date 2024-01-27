@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import CardSong from './CardSong'
-import { Link, useLocation } from 'react-router-dom'
+import CardResults from './CardResults'
 
-export default function MyMainHomePage() {
+export default function MyMainHomePage({ data }) {
 
+  const getData = data;
   const [songs, setSongs] = useState([])
   const [pop, setPop] = useState([])
   const [hip, setHop] = useState([])
-  let { state } = useLocation();
 
 
 
@@ -27,7 +27,7 @@ export default function MyMainHomePage() {
       .then(response => response.json())
       .then(json => { 
         setSongs(json.data)
-        // console.log(songs)
+        // console.log(json.data)
         })
       .catch(error => console.error('error'))
   }
@@ -42,7 +42,7 @@ export default function MyMainHomePage() {
       .then(response => response.json())
       .then(json => { 
         setPop(json.data)
-      // console.log(pop)
+      // console.log(json.data)
         })
       .catch(error => console.error('error'))
   }
@@ -58,7 +58,7 @@ export default function MyMainHomePage() {
       .then(response => response.json())
       .then(json => { 
         setHop(json.data)
-      // console.log(hip)
+      // console.log(json.data)
         })
       .catch(error => console.error('error'))
   }
@@ -66,6 +66,12 @@ export default function MyMainHomePage() {
 
   // async function getTextInput() {
   //   await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${query}`)
+  // }
+
+  // const handleFetch = () => {
+  //   getSongsRock()
+  //   getSongsPop()
+  //   getSongsHipHop()
   // }
 
   useEffect(() => {
@@ -87,18 +93,23 @@ export default function MyMainHomePage() {
                     <a href="#">DISCOVER</a>
                 </Col>
             </Row>
-            <Row>
+
+
+            {/* { getData &&  */}
+                <Row>
                 <Col className="col-10">
-                  <div id="searchResults" style={{display: "none"}}>
+                  <div id="searchResults" className='d-none'>
                       <h2>Search Results</h2>
                       <div
                       className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                       >
-                        {/* <CardSong songs={songs} /> */}
+                        {/* <CardResults key={data.value} data={data} /> */}
                       </div>
                   </div>
                 </Col>
             </Row>
+            {/* } */}
+            
 
             <Row>
               <Col className="col-10">
@@ -106,7 +117,7 @@ export default function MyMainHomePage() {
                   <h2>Rock Classics</h2>
                   <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3 d-flex align-items-center justify-content-center"
                     id="rockSection">
-                      <CardSong songs={songs} />
+                      <CardSong key={songs.value} songs={songs} />
                     </div>
                   </div>
                 </Col>
@@ -119,7 +130,7 @@ export default function MyMainHomePage() {
                     <div
                     className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                     id="popSection">
-                      <CardSong pop={pop} />
+                      <CardSong key={pop.value} pop={pop} />
                     </div>
                 </div>
                 </Col>
@@ -131,7 +142,7 @@ export default function MyMainHomePage() {
                     <div
                     className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                     id="hipHopSection">
-                      <CardSong hip={hip} />
+                      <CardSong key={hip.value} hip={hip} />
                     </div>
                 </div>
                 </Col>
