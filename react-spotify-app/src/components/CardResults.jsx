@@ -4,7 +4,7 @@ import { Row, Col } from 'react-bootstrap'
 
 export default function CardResults({ data }) {
 
-  // console.log(data)
+  console.log(data)
 
   return (  
     <>
